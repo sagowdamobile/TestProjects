@@ -81,14 +81,8 @@ class MarkovTextGenerator:
                 result.append(next_word)
                 current = tuple(result[-self.order:])
             else:
-                # If we reach a dead end, pick a random key and adjust remaining count
+                # If we reach a dead end, pick a random key and continue
                 current = random.choice(list(self.chain.keys()))
-                # Only add what we need to reach the target length
-                remaining = length - i
-                if remaining > 0:
-                    result.append(current[0])
-                    current = tuple(result[-self.order:])
-                break
         
         # Join words and clean up spacing around punctuation
         text = ' '.join(result)
