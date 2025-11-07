@@ -1,0 +1,4 @@
+# Requirements for Simple AI Example Projects
+
+# For sentiment analysis example
+textblob==0.17.1
