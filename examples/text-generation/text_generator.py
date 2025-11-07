@@ -59,7 +59,7 @@ class MarkovTextGenerator:
         
         # Start with a random key or use seed
         if seed:
-            words = re.findall(r'\b\w+\b', seed.lower())
+            words = re.findall(r'\b\w+\b|[.,!?;]', seed.lower())
             if len(words) >= self.order:
                 current = tuple(words[-self.order:])
                 if current not in self.chain:

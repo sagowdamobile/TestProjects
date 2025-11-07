@@ -47,14 +47,16 @@ class SimpleChatbot:
                 "Goodbye! Have a great day!",
                 "See you later!",
                 "Bye! Come back anytime!"
-            ],
-            r'.*': [
-                "That's interesting! Tell me more.",
-                "I see. What else would you like to talk about?",
-                "Hmm, I'm not sure how to respond to that. Can you rephrase?",
-                "Interesting point! What else is on your mind?"
             ]
         }
+        
+        # Default responses for unmatched inputs
+        self.default_responses = [
+            "That's interesting! Tell me more.",
+            "I see. What else would you like to talk about?",
+            "Hmm, I'm not sure how to respond to that. Can you rephrase?",
+            "Interesting point! What else is on your mind?"
+        ]
     
     def get_response(self, user_input):
         """
@@ -72,7 +74,8 @@ class SimpleChatbot:
             if re.search(pattern, user_input):
                 return random.choice(responses)
         
-        return "I'm not sure I understand. Can you try asking something else?"
+        # Return default response if no pattern matched
+        return random.choice(self.default_responses)
     
     def chat(self):
         """Start an interactive chat session."""
