@@ -10,6 +10,9 @@ import re
 class MarkovTextGenerator:
     """A simple text generator using Markov chains."""
     
+    # Regex pattern for tokenizing text (words and punctuation)
+    TOKEN_PATTERN = r'\b\w+\b|[.,!?;]'
+    
     def __init__(self, order=2):
         """
         Initialize the Markov text generator.
@@ -28,7 +31,7 @@ class MarkovTextGenerator:
             text (str): The training text
         """
         # Tokenize the text into words
-        words = re.findall(r'\b\w+\b|[.,!?;]', text)
+        words = re.findall(self.TOKEN_PATTERN, text)
         
         # Build the Markov chain
         for i in range(len(words) - self.order):
@@ -59,7 +62,7 @@ class MarkovTextGenerator:
         
         # Start with a random key or use seed
         if seed:
-            words = re.findall(r'\b\w+\b|[.,!?;]', seed.lower())
+            words = re.findall(self.TOKEN_PATTERN, seed.lower())
             if len(words) >= self.order:
                 current = tuple(words[-self.order:])
                 if current not in self.chain:
