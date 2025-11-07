@@ -136,7 +136,7 @@ def main():
     
     # Interactive mode
     print("\n" + "=" * 60)
-    print("Try your own! (Press Enter with empty text to exit)")
+    print("Try your own! (Type 'quit' to exit)")
     print("=" * 60)
     
     while True:
