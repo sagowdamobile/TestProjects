@@ -52,7 +52,7 @@ A text generator that creates new content based on training text using Markov ch
 
 1. Clone this repository:
 ```bash
-git clone https://github.com/sagowdamobile/TestProjects.git
+git clone https://github.com/<your-username>/TestProjects.git
 cd TestProjects
 ```
 

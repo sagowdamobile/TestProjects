@@ -10,8 +10,13 @@ This example uses TextBlob to analyze text and determine whether it's positive, 
 
 ## Installation
 
+From the repository root, install dependencies:
 ```bash
-pip install textblob
+pip install -r requirements.txt
+```
+
+Then download the required corpora:
+```bash
 python -m textblob.download_corpora
 ```
 
