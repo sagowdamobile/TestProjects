@@ -30,8 +30,8 @@ class MarkovTextGenerator:
         Args:
             text (str): The training text
         """
-        # Tokenize the text into words
-        words = re.findall(self.TOKEN_PATTERN, text)
+        # Tokenize the text into words (lowercase for consistency)
+        words = re.findall(self.TOKEN_PATTERN, text.lower())
         
         # Build the Markov chain
         for i in range(len(words) - self.order):
@@ -75,15 +75,20 @@ class MarkovTextGenerator:
         result = list(current)
         
         # Generate text
-        for _ in range(length):
+        for i in range(length):
             if current in self.chain:
                 next_word = random.choice(self.chain[current])
                 result.append(next_word)
                 current = tuple(result[-self.order:])
             else:
-                # If we reach a dead end, pick a random key
+                # If we reach a dead end, pick a random key and adjust remaining count
                 current = random.choice(list(self.chain.keys()))
-                result.extend(current)
+                # Only add what we need to reach the target length
+                remaining = length - i
+                if remaining > 0:
+                    result.append(current[0])
+                    current = tuple(result[-self.order:])
+                break
         
         # Join words and clean up spacing around punctuation
         text = ' '.join(result)
