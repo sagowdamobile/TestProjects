@@ -140,21 +140,18 @@ def main():
     print("=" * 60)
     
     while True:
-        seed = input("\nEnter seed text (or press Enter for random): ").strip()
-        if seed is None:
+        seed_input = input("\nEnter seed text (or press Enter for random, 'quit' to exit): ").strip()
+        
+        if seed_input.lower() == 'quit':
             break
         
-        if seed == "":
-            seed = None
+        seed = seed_input if seed_input else None
         
         try:
             length = input("How many words to generate? (default: 30): ").strip()
             length = int(length) if length else 30
         except ValueError:
             length = 30
-        
-        if seed is None and length == 0:
-            break
         
         generated = generator.generate(length=length, seed=seed)
         print(f"\nGenerated: {generated}")
